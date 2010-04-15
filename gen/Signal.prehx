@@ -6,8 +6,8 @@ class ::name::::types::{
   public var listeners(default, null):Int; // l.length is slow, o.length have no sense (look dispatch()),
   public var listenersOnce(default, null):Int; // ...so we store lenghts in this ints
 
-  public dynamic function activate():Void;
-  public dynamic function deactivate():Void;
+  public var activate:Void->Void;
+  public var deactivate:Void->Void;
 
   public function new(?activate:Void->Void = null, ?deactivate:Void->Void = null){
     this.activate = activate;
