@@ -7,70 +7,6 @@ import signals.Signal3;
 import signals.Signal4;
 import signals.Signal5;
 
-
-
-class Catcher0{
-  public function new(){}
-  public function catch0(){}
-  public function catch1(){}
-  public function catch2(){}
-  public function catch3(){}
-  public function catch4(){}
-  public function catch5(){}
-  }
-
-class Catcher1{
-  public function new(){}
-  public function catch0(a0:Int){}
-  public function catch1(a0:Int){}
-  public function catch2(a0:Int){}
-  public function catch3(a0:Int){}
-  public function catch4(a0:Int){}
-  public function catch5(a0:Int){}
-  }
-
-class Catcher2{
-  public function new(){}
-  public function catch0(a0:Int, a1:Int){}
-  public function catch1(a0:Int, a1:Int){}
-  public function catch2(a0:Int, a1:Int){}
-  public function catch3(a0:Int, a1:Int){}
-  public function catch4(a0:Int, a1:Int){}
-  public function catch5(a0:Int, a1:Int){}
-  }
-
-class Catcher3{
-  public function new(){}
-  public function catch0(a0:Int, a1:Int, a2:Int){}
-  public function catch1(a0:Int, a1:Int, a2:Int){}
-  public function catch2(a0:Int, a1:Int, a2:Int){}
-  public function catch3(a0:Int, a1:Int, a2:Int){}
-  public function catch4(a0:Int, a1:Int, a2:Int){}
-  public function catch5(a0:Int, a1:Int, a2:Int){}
-  }
-
-class Catcher4{
-  public function new(){}
-  public function catch0(a0:Int, a1:Int, a2:Int, a3:Int){}
-  public function catch1(a0:Int, a1:Int, a2:Int, a3:Int){}
-  public function catch2(a0:Int, a1:Int, a2:Int, a3:Int){}
-  public function catch3(a0:Int, a1:Int, a2:Int, a3:Int){}
-  public function catch4(a0:Int, a1:Int, a2:Int, a3:Int){}
-  public function catch5(a0:Int, a1:Int, a2:Int, a3:Int){}
-  }
-
-class Catcher5{
-  public function new(){}
-  public function catch0(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
-  public function catch1(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
-  public function catch2(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
-  public function catch3(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
-  public function catch4(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
-  public function catch5(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
-  }
-
-
-
 class Test{
   static var IT = 100000;
   var matrix:Array<Array<Float>>;
@@ -930,4 +866,64 @@ class Test{
       return Timer.stamp() - t;
       }
 
+  }
+
+class Catcher0{
+  public function new(){}
+  public function catch0(){}
+  public function catch1(){}
+  public function catch2(){}
+  public function catch3(){}
+  public function catch4(){}
+  public function catch5(){}
+  }
+
+class Catcher1{
+  public function new(){}
+  public function catch0(a0:Int){}
+  public function catch1(a0:Int){}
+  public function catch2(a0:Int){}
+  public function catch3(a0:Int){}
+  public function catch4(a0:Int){}
+  public function catch5(a0:Int){}
+  }
+
+class Catcher2{
+  public function new(){}
+  public function catch0(a0:Int, a1:Int){}
+  public function catch1(a0:Int, a1:Int){}
+  public function catch2(a0:Int, a1:Int){}
+  public function catch3(a0:Int, a1:Int){}
+  public function catch4(a0:Int, a1:Int){}
+  public function catch5(a0:Int, a1:Int){}
+  }
+
+class Catcher3{
+  public function new(){}
+  public function catch0(a0:Int, a1:Int, a2:Int){}
+  public function catch1(a0:Int, a1:Int, a2:Int){}
+  public function catch2(a0:Int, a1:Int, a2:Int){}
+  public function catch3(a0:Int, a1:Int, a2:Int){}
+  public function catch4(a0:Int, a1:Int, a2:Int){}
+  public function catch5(a0:Int, a1:Int, a2:Int){}
+  }
+
+class Catcher4{
+  public function new(){}
+  public function catch0(a0:Int, a1:Int, a2:Int, a3:Int){}
+  public function catch1(a0:Int, a1:Int, a2:Int, a3:Int){}
+  public function catch2(a0:Int, a1:Int, a2:Int, a3:Int){}
+  public function catch3(a0:Int, a1:Int, a2:Int, a3:Int){}
+  public function catch4(a0:Int, a1:Int, a2:Int, a3:Int){}
+  public function catch5(a0:Int, a1:Int, a2:Int, a3:Int){}
+  }
+
+class Catcher5{
+  public function new(){}
+  public function catch0(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
+  public function catch1(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
+  public function catch2(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
+  public function catch3(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
+  public function catch4(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
+  public function catch5(a0:Int, a1:Int, a2:Int, a3:Int, a4:Int){}
   }
