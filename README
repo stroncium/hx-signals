@@ -15,3 +15,11 @@ $ haxe test-swf.hxml
 $ haxe test-neko.hxml
 $ flashplayer test.swf
 $ neko test.n
+
+
+in Signal.prehx
+ - ::name:: is replaced by class name
+ - ::types:: is replaced by "<T1, T2, T3>" style string
+ - ::func:: is replaced by "T1->T2->T3->Void" style function type
+ - ::dispatch_args:: is replaced by "a1:T1, a2:T2, a3:T3" style string for dispatch function
+ - ::call_args:: is replaced by "a1, a2, a3" style string for calling listeners in dispatch
