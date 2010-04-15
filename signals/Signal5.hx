@@ -1,7 +1,8 @@
 package signals;
+
 class Signal5<T1, T2, T3, T4, T5>{
-  var l:Array<T1->T2->T3->T4->T5->Void>; // catchers
-  var o:Array<T1->T2->T3->T4->T5->Void>; // "once" catchers
+  var l:Array<T1->T2->T3->T4->T5->Void>; // listeners
+  var o:Array<T1->T2->T3->T4->T5->Void>; // once listeners
   public var listeners(default, null):Int; // l.length is slow, o.length have no sense (look dispatch()),
   public var listenersOnce(default, null):Int; // ...so we store lenghts in this ints
 
@@ -17,15 +18,21 @@ class Signal5<T1, T2, T3, T4, T5>{
     listenersOnce = 0;
     }
 
-  public function add(f:T1->T2->T3->T4->T5->Void){
-    l[listeners] = f;
+  public function add(f:T1->T2->T3->T4->T5->Void, ?prioritize:Bool = false){
+    if(prioritize)
+      l.insert(0, f);
+    else
+      l[listeners] = f;
     if( (listeners == 0) && (listenersOnce == 0) && (activate != null) )
       activate();
     listeners++;
     }
 
-  public function once(f:T1->T2->T3->T4->T5->Void){
-    o[listenersOnce] = f;
+  public function once(f:T1->T2->T3->T4->T5->Void, ?prioritize:Bool = false){
+    if(prioritize)
+      o.insert(0, f);
+    else
+      o[listenersOnce] = f;
     if( (listeners == 0) && (listenersOnce == 0) && (activate != null) )
       activate();
     listenersOnce++;
@@ -36,44 +43,33 @@ class Signal5<T1, T2, T3, T4, T5>{
   #end
   public function dispatch(a1:T1, a2:T2, a3:T3, a4:T4, a5:T5){
     // inlining slightly reduces execution time,
-    // ...but it's 3/5 - 4/5 of alisteners time for signals with 0 catchers
-    // ...so inlining makes signal faster than simple calistenersback for 0 catcher cases
+    // ...but it's 3/5 - 4/5 of all time for signals with 0 catchers
+    // ...so inlining makes signal faster than simple callback for 0 catcher cases
     var i;
-
     i = 0;
-    while(i < listeners){
-      l[i](a1, a2, a3, a4, a5);
-      i++;
-      }
+    while(i < listeners)
+      l[i++](a1, a2, a3, a4, a5);
 
     i = 0;
     while(i < listenersOnce){
       o[i](a1, a2, a3, a4, a5);
-      o[i] = null; // we null it for gc, but don't delete to save time
-      i++;
+      o[i++] = null; // we null it for gc, but don't delete to save time
       }
-    if( (listeners == 0) && (listenersOnce != 0) && (deactivate != null) )
+
+    if( (listenersOnce > 0) && (listeners == 0) && (deactivate != null) )
       deactivate();
 
-
     listenersOnce = 0; // so o "length" becomes 0
-
     }
 
   public function remove(f:T1->T2->T3->T4->T5->Void){ // removes first occurence in l
-    var i = 0;
-    while(i < listeners){
+    var i = listeners;
+    while(--i >= 0) // search for listener
       if(l[i] == f)
         break;
-      i++;
-      }
-    if(i < listeners){
-      i++;
-      while(i < listeners){
-        l[i-1] = l[i];
-        i++;
-        }
-      l[i] = null;
+
+    if(i >= 0){ // we found a listener in array?
+      l.splice(i, 1);
       listeners--;
       if( (listeners == 0) && (listenersOnce == 0) && (deactivate != null) )
         deactivate();
@@ -81,12 +77,12 @@ class Signal5<T1, T2, T3, T4, T5>{
 
     }
 
-  public function removeAll(){ // brings back to initial state
+  public function reset(){ // brings back to initial state
     l = new Array<T1->T2->T3->T4->T5->Void>();
     o = new Array<T1->T2->T3->T4->T5->Void>();
+    if( ((listeners + listenersOnce) > 0) && (deactivate != null) )
+      deactivate();
     listeners = 0;
     listenersOnce = 0;
-    if(deactivate != null)
-      deactivate();
     }
   }
