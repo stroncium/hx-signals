@@ -6,10 +6,10 @@ class ::name::::types::{
   public var listeners(default, null):Int; // l.length is slow, o.length have no sense (look dispatch()),
   public var listenersOnce(default, null):Int; // ...so we store lenghts in this ints
 
-  public var activate:Void->Void;
-  public var deactivate:Void->Void;
+  public var activate:::name::::types::->Void;
+  public var deactivate:::name::::types::->Void;
 
-  public function new(?activate:Void->Void = null, ?deactivate:Void->Void = null){
+  public function new(?activate:::name::::types::->Void = null, ?deactivate:::name::::types::->Void = null){
     this.activate = activate;
     this.deactivate = deactivate;
     l = new Array<::func::>();
@@ -24,7 +24,7 @@ class ::name::::types::{
     else
       l[listeners] = f;
     if( (listeners == 0) && (listenersOnce == 0) && (activate != null) )
-      activate();
+      activate(this);
     listeners++;
     }
 
@@ -34,7 +34,7 @@ class ::name::::types::{
     else
       o[listenersOnce] = f;
     if( (listeners == 0) && (listenersOnce == 0) && (activate != null) )
-      activate();
+      activate(this);
     listenersOnce++;
     }
 
@@ -57,7 +57,7 @@ class ::name::::types::{
       }
 
     if( (listenersOnce > 0) && (listeners == 0) && (deactivate != null) )
-      deactivate();
+      deactivate(this);
 
     listenersOnce = 0; // so o "length" becomes 0
     }
@@ -72,7 +72,7 @@ class ::name::::types::{
       l.splice(i, 1);
       listeners--;
       if( (listeners == 0) && (listenersOnce == 0) && (deactivate != null) )
-        deactivate();
+        deactivate(this);
       }
 
     }
@@ -81,7 +81,7 @@ class ::name::::types::{
     l = new Array<::func::>();
     o = new Array<::func::>();
     if( ((listeners + listenersOnce) > 0) && (deactivate != null) )
-      deactivate();
+      deactivate(this);
     listeners = 0;
     listenersOnce = 0;
     }
