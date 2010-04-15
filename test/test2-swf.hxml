@@ -1,0 +1,4 @@
+-swf test2.swf
+-swf-version 10
+-main Test2
+-cp ../
