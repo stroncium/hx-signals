@@ -85,9 +85,9 @@ class ::name::::types::{
   public function removeAll(){ // brings back to initial state
     l = new Array<::func::>();
     o = new Array<::func::>();
+    if( ((listeners + listenersOnce) > 0) && (deactivate != null) )
+      deactivate();
     listeners = 0;
     listenersOnce = 0;
-    if(deactivate != null)
-      deactivate();
     }
   }
