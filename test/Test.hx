@@ -126,11 +126,11 @@ class Test{
                   me.test_part5();
                   trace("5 arg signals [DONE]");
                   me.finish();
-                  }, 50);
-                }, 50);
-              }, 50);
-            }, 50);
-          }, 50);
+                  }, 300);
+                }, 250);
+              }, 200);
+            }, 150);
+          }, 100);
         }, 50);
     #else
       trace('running...');
