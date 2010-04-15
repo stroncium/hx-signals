@@ -6,10 +6,10 @@ class Signal3<T1, T2, T3>{
   public var listeners(default, null):Int; // l.length is slow, o.length have no sense (look dispatch()),
   public var listenersOnce(default, null):Int; // ...so we store lenghts in this ints
 
-  public dynamic function activate():Void;
-  public dynamic function deactivate():Void;
+  public var activate:Signal3<T1, T2, T3>->Void;
+  public var deactivate:Signal3<T1, T2, T3>->Void;
 
-  public function new(?activate:Void->Void = null, ?deactivate:Void->Void = null){
+  public function new(?activate:Signal3<T1, T2, T3>->Void = null, ?deactivate:Signal3<T1, T2, T3>->Void = null){
     this.activate = activate;
     this.deactivate = deactivate;
     l = new Array<T1->T2->T3->Void>();
@@ -24,7 +24,7 @@ class Signal3<T1, T2, T3>{
     else
       l[listeners] = f;
     if( (listeners == 0) && (listenersOnce == 0) && (activate != null) )
-      activate();
+      activate(this);
     listeners++;
     }
 
@@ -34,7 +34,7 @@ class Signal3<T1, T2, T3>{
     else
       o[listenersOnce] = f;
     if( (listeners == 0) && (listenersOnce == 0) && (activate != null) )
-      activate();
+      activate(this);
     listenersOnce++;
     }
 
@@ -57,7 +57,7 @@ class Signal3<T1, T2, T3>{
       }
 
     if( (listenersOnce > 0) && (listeners == 0) && (deactivate != null) )
-      deactivate();
+      deactivate(this);
 
     listenersOnce = 0; // so o "length" becomes 0
     }
@@ -72,7 +72,7 @@ class Signal3<T1, T2, T3>{
       l.splice(i, 1);
       listeners--;
       if( (listeners == 0) && (listenersOnce == 0) && (deactivate != null) )
-        deactivate();
+        deactivate(this);
       }
 
     }
@@ -81,7 +81,7 @@ class Signal3<T1, T2, T3>{
     l = new Array<T1->T2->T3->Void>();
     o = new Array<T1->T2->T3->Void>();
     if( ((listeners + listenersOnce) > 0) && (deactivate != null) )
-      deactivate();
+      deactivate(this);
     listeners = 0;
     listenersOnce = 0;
     }
