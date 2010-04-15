@@ -9,7 +9,7 @@ class EventBinder<T>{
     var binder = new EventBinder<T>();
     binder.dispatcher = dispatcher;
     binder.event = event;
-    return binder.signal = new Signal1<T>(binder.activate, binder.deactivate);
+    return new Signal1<T>(binder.activate, binder.deactivate);
     }
 
   var dispatcher:IEventDispatcher;
@@ -19,11 +19,13 @@ class EventBinder<T>{
   function new(){
     }
 
-  function activate(){
+  function activate(signal){
+    this.signal = signal;
     dispatcher.addEventListener(event, on_event);
     }
 
-  function deactivate(){
+  function deactivate(signal){
+    this.signal = null;
     dispatcher.removeEventListener(event, on_event);
     }
 

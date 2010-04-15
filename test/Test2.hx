@@ -26,16 +26,15 @@ class Test2 extends Sprite{
     tf.text = "click the box";
     addChild(tf);
 
-    //~ clicked1 = EventBinderSimple.bind(this, MouseEvent.CLICK);
-//~
-    //~ clicked1.add(function(){
-      //~ trace("clicked");
-      //~ });
-
-    clicked2 = EventBinder.bind(this, MouseEvent.CLICK);
-    clicked2.add(function(e){
-      trace("clicked "+e);
+    clicked1 = EventBinderSimple.bind(this, MouseEvent.CLICK);
+    clicked1.add(function(){
+      trace("clicked");
       });
+
+    //~ clicked2 = EventBinder.bind(this, MouseEvent.CLICK);
+    //~ clicked2.add(function(e){
+      //~ trace("clicked "+e);
+      //~ });
 
 
 

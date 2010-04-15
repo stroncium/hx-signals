@@ -10,7 +10,7 @@ class EventBinderSimple{
     var binder = new EventBinderSimple();
     binder.dispatcher = dispatcher;
     binder.event = event;
-    return binder.signal = new Signal(binder.activate, binder.deactivate);
+    return new Signal(binder.activate, binder.deactivate);
     }
 
   var dispatcher:IEventDispatcher;
@@ -20,11 +20,13 @@ class EventBinderSimple{
   function new(){
     }
 
-  function activate(){
+  function activate(signal){
+    this.signal = signal;
     dispatcher.addEventListener(event, on_event);
     }
 
-  function deactivate(){
+  function deactivate(signal){
+    this.signal = null;
     dispatcher.removeEventListener(event, on_event);
     }
 
